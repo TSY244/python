@@ -1,7 +1,6 @@
 s = "hello world"  # !
 print("Hello World!")  # ?
 
-# TODO:
 
 
 # import abc
