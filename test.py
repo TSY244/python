@@ -1,8 +1,25 @@
-s = "hello world"  # !
-print("Hello World!")  # ?
+# ?文件操作学习请注意
+
+# 首先创建一个文本，我们使用'w'模式没有的话就会创建一个
+
+with open("wxLearn.txt", "w") as f:
+    # 没有的话就会创建一个
+    inputStr = "wxLearn"
+    f.write(inputStr)
+# !这样使用会自动close
+
+# 普通的使用方法
+f = open("wxLearn.txt", "r")
+outputStr = f.readline()
+print(outputStr)
+f.close()  # !一定要close
+
+
+# s = "hello world"  # !
+# print("Hello World!")  # ?
 
 # TODO: test
-# FIXME: test       
+# FIXME: test
 
 # test
 # import abc
