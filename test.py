@@ -1,3 +1,67 @@
+from threading import Thread, Lock
+
+i = 0
+total = 0
+lock = Lock()
+
+
+def work():
+    global i, total
+
+    while i != 101:
+        lock.acquire()
+        total += i
+        i += 1
+        lock.release()
+
+
+def main():
+    t1 = Thread(target=work)
+    t1.start()
+    t2 = Thread(target=work)
+    t2.start()
+
+    t1.join()
+    t2.join()
+
+    print(f"结果是: {total}")
+
+
+if __name__ == "__main__":
+    main()
+
+
+# from time import time, sleep
+# from multiprocessing import Process
+
+# # 使用多进程
+
+
+# def work_out():
+#     start = time()
+#     all = 1
+#     for i in range(1, 100000):
+#         all = all * i
+#         # print(all)
+#     end = time()
+#     print(f"消耗的时间为 ：{end-start}\n")
+
+
+# def main():
+#     start = time()
+#     p1 = Process(target=work_out)
+#     p1.start()
+#     p2 = Process(target=work_out)
+#     p2.start()
+#     p1.join()
+#     p2.join()
+#     end = time()
+#     print(f"消耗时间为:{end-start}")
+
+
+# if __name__ == "__main__":
+#     main()
+
 # ?文件操作学习请注意
 
 # 首先创建一个文本，我们使用'w'模式没有的话就会创建一个
