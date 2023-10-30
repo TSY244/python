@@ -1,40 +1,83 @@
-from threading import Thread, Lock
+from threading import Thread
+import requests
 
-i = 0
-total = 0
-lock = Lock()
+class Download(Thread):
+    def __init__(self, url):
+        super().__init__()
+        self.__url = url 
 
-
-def work():
-    global i, total
-
-    while i != 101:
-        lock.acquire()
-        total += i
-        i += 1
-        lock.release()
-
+    def run(self):
+        fileName = self.__url[self.__url.rfind('/')+1:] # 获取文件名，从左一个/开始后面的
+        resp = requests.get(self.__url) 
+        with open(fileName, "wb") as f: # 保存为特定的格式
+            f.write(resp.content)
 
 def main():
-    t1 = Thread(target=work)
-    t1.start()
-    t2 = Thread(target=work)
-    t2.start()
-
-    t1.join()
-    t2.join()
-
-    print(f"结果是: {total}")
+    Download(r"自己的").start() #! 我本来放了我的图床的，但是你是学web的，我怕被你发现了什么神奇的东西哈哈哈
 
 
-if __name__ == "__main__":
-    main()
+main()
+# import requests
+# from time import time 
+# from threading import Thread
+
+
+
+
+# def test():
+#     i=10
+#     if i==10:
+#         j=20
+        
+#     print(j)
+
+
+# print(__name__)
+
+
+# import re
+
+# 连接数据库
+
+
+# print(re.findall(r"asdf",string))
+
+# from threading import Thread, Lock
+
+# i = 0
+# total = 0
+# lock = Lock()
+
+
+# def work():
+#     global i, total
+
+#     while i != 101:
+#         lock.acquire()
+#         total += i
+#         i += 1
+#         lock.release()
+
+
+# def main():
+#     t1 = Thread(target=work)
+#     t1.start()
+#     t2 = Thread(target=work)
+#     t2.start()
+
+#     t1.join()
+#     t2.join()
+
+#     print(f"结果是: {total}")
+
+
+# if __name__ == "__main__":
+#     main()
 
 
 # from time import time, sleep
 # from multiprocessing import Process
-
-# # 使用多进程
+# 使用多进程
 
 
 # def work_out():
