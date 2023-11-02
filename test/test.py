@@ -1,25 +1,27 @@
-from threading import Thread
-import requests
-
-class Download(Thread):
-    def __init__(self, url):
-        super().__init__()
-        self.__url = url 
-
-    def run(self):
-        fileName = self.__url[self.__url.rfind('/')+1:] # 获取文件名，从左一个/开始后面的
-        resp = requests.get(self.__url) 
-        with open(fileName, "wb") as f: # 保存为特定的格式
-            f.write(resp.content)
-
-def main():
-    Download(r"自己的").start() #! 我本来放了我的图床的，但是你是学web的，我怕被你发现了什么神奇的东西哈哈哈
 
 
-main()
+# from threading import Thread
+# import requests
+
+# class Download(Thread):
+#     def __init__(self, url):
+#         super().__init__()
+#         self.__url = url 
+
+#     def run(self):
+#         fileName = self.__url[self.__url.rfind('/')+1:] # 获取文件名，从左一个/开始后面的
+#         resp = requests.get(self.__url) 
+#         with open(fileName, "wb") as f: # 保存为特定的格式
+#             f.write(resp.content)
+
+# def main():
+#     Download(r"自己的").start() #! 我本来放了我的图床的，但是你是学web的，我怕被你发现了什么神奇的东西哈哈哈
+
+
+# main()
 # import requests
 # from time import time 
-# from threading import Thread
+# from threading import Thread  
 
 
 
